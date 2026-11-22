@@ -115,20 +115,7 @@ func NewOrderbook() *Orderbook {
 	}
 }
 
-func (ob *Orderbook) PlaceOrder(price float64, o *Order) []Match {
-	// 1. try ti match the order
-	// matching logic
-
-	// 2. add the rest of the order to the books
-	if o.Size > 0.0 {
-		ob.add(price, o)
-	}
-
-	return []Match{}
-}
-
-// Buy 10 BTC => 15k
-func (ob *Orderbook) add(price float64, o *Order) {
+func (ob *Orderbook) PlaceLimitOrder(price float64, o *Order) {
 	var limit *Limit
 	if o.Bid {
 		limit = ob.BidLimits[price]
